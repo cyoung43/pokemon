@@ -1,0 +1,202 @@
+<!--
+    Chris Young
+    Nate Bezzant
+    Parker Sampson
+    Conner Simonsen
+    Glen Harris
+
+    Section 001
+
+    Program Description:
+        This webpage provides users the chance to embrace their childhood and play a retro PokeyMon battle against
+        a computer.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokemon Batte</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Roboto|Roboto+Condensed|Roboto+Mono" >
+    <link rel='stylesheet' type='text/css' href='./loading-bar/loading-bar.css'>    
+    <link rel="stylesheet" type="text/css" media="screen" href="poke.css">
+    <script type='text/javascript' src='./loading-bar/loading-bar.js'></script>
+    <script type='text/javascript' src='pokemon.js'></script>
+</head>
+<body>
+    <div class='container'>
+        <form>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png" width="50%">
+            <fieldset class='trainer'>
+                <legend>Create your trainer and Party</legend>
+    
+                <label for='firstName'>First Name</label>
+                <input type='text' placeholder='First Name' name='firstName' id='firstName'>
+    
+                <br>
+    
+                <label for='lastName'>Last Name</label>
+                <input type='text' placeholder='Last Name' name='lastName' id='lastName'>
+    
+                <br><br>
+    
+                <label for='trainerType'>Trainer Type</label>
+                <select name='trainerType' id='trainerType'>
+                    <option value='bug_catcher'>Bug Catcher</option>
+                    <option value='biker'>Biker</option>
+                    <option value='hiker'>Hiker</option>
+                    <option value='bird_keeper'>Bird Keeper</option>
+                    <option value='blackbelt'>Blackbelt</option>
+                    <option value='burglar'>Burglar</option>
+                    <option value='lass'>Lass</option>
+                    <option value='youngster'>Youngster</option>
+                    <option value='fisherman'>Fisherman</option>
+                    <option value='super_nerd'>Super Nerd</option>
+                    <option value='bird_keeper'>Bird Keeper</option>
+                    <option value='beauty'>Beauty</option>
+                </select>
+    
+                <br><br>
+    
+                <label for='party1'>First Pokemon</label>
+                <select name='party1' id='party1'>
+                    <option value='0'>Bulbasaur</option>
+                    <option value='1'>Charmander</option>
+                    <option value='2'>Squirtle</option>
+                    <option value='3'>Pidgey</option>
+                    <option value='4'>Rattata</option>
+                    <option value='5'>Spearow</option>
+                    <option value='6'>Ekans</option>
+                    <option value='7'>Pikachu</option>
+                </select>
+                
+                <br>
+              
+                <label for='party2'>Second Pokemon</label>
+                <select name='party2' id='party2'>
+                    <option value='0'>Bulbasaur</option>
+                    <option value='1'>Charmander</option>
+                    <option value='2'>Squirtle</option>
+                    <option value='3'>Pidgey</option>
+                    <option value='4'>Rattata</option>
+                    <option value='5'>Spearow</option>
+                    <option value='6'>Ekans</option>
+                    <option value='7'>Pikachu</option>
+                </select>
+    
+                <br>
+    
+                <label for='party3'>Third Pokemon</label>
+                <select name='party3' id='party3'>
+                    <option value='0'>Bulbasaur</option>
+                    <option value='1'>Charmander</option>
+                    <option value='2'>Squirtle</option>
+                    <option value='3'>Pidgey</option>
+                    <option value='4'>Rattata</option>
+                    <option value='5'>Spearow</option>
+                    <option value='6'>Ekans</option>
+                    <option value='7'>Pikachu</option>
+                </select>
+            </fieldset>
+            <br>
+            <button id='goBattle' type='button' onclick='battle()'>Go Battle!</button>
+        </form>
+        <br><br>
+
+        <div id='battle'>
+            <div class='sides'>
+                <div class='mySide side'>
+                    <div>
+                        <img id='mySprite' class='trainerSprite' src='' />
+                        <p id='myName'></p>
+                        <div id='myWinsLosses'>
+                            <p>Wins: <span id='myWins'></span></p>
+                            <p>Losses: <span id='myLosses'></span></p>
+                        </div>
+                    </div>
+                    
+                    <div class='myParty party'>
+                        <div id='myPokemon1' class='pokemon'>
+                            <img id='myPokemonImg1' src='' />
+                            <p id='myPokemonName1'></p>
+                            <div id="myPokemonHP1">
+                                <!--<div class="ldBar" data-value="" id="myHP1"></div>-->
+                            </div>
+                        </div>
+
+                        <div id='myPokemon2' class='pokemon'>
+                            <img id='myPokemonImg2' src='' />
+                            <p id='myPokemonName2'></p>
+                            <div id="myPokemonHP2"></div>
+                        </div>
+
+                        <div id='myPokemon3' class='pokemon'>
+                            <img id='myPokemonImg3' src='' />
+                            <p id='myPokemonName3'></p>
+                            <div id="myPokemonHP3"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='displays'>
+                    <div id='myDisplay' class='display'>
+                        <h3>Your move</h3>
+                        <p id='myMove'></p>
+                        <p id='myEffectiveness'></p>
+                        <p id='myExtra'></p>
+                        <p id='myFainted'></p>
+                    </div>
+                    <div id='oppDisplay' class='display'>
+                        <h3>Their move</h3>
+                        <p id='oppMove'></p>
+                        <p id='oppEffectiveness'></p>
+                        <p id='oppExtra'></p>
+                        <p id='oppFainted'></p>
+                    </div>
+                    <div id='overallDisplay' class='display'>
+                        <h3>Results</h3>
+                        <p id='overallDisplayText'></p>
+                    </div>
+                </div>
+                
+
+                <div class="oppSide side">
+                    <div class='oppParty party'>
+                        <div id="oppPokemon1" class="pokemon">
+                            <img id='oppPokemonImg1' src='' />
+                            <p id='oppPokemonName1'></p>
+                            <div id="oppPokemonHP1"></div>
+                        </div>
+                        <div id="oppPokemon2" class="pokemon">
+                            <img id='oppPokemonImg2' src='' />
+                            <p id='oppPokemonName2'></p>
+                            <div id="oppPokemonHP2"></div>
+                        </div>
+                        <div id="oppPokemon3" class="pokemon">
+                            <img id='oppPokemonImg3' src='' />
+                            <p id='oppPokemonName3'></p>
+                            <div id="oppPokemonHP3"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <img id='oppSprite' class='trainerSprite' src='' />
+                        <p id='oppName'></p>
+                        <div id='oppWinsLosses'>
+                            <p>Wins: <span id='oppWins'></span></p>
+                            <p>Losses: <span id='oppLosses'></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='moves'>
+                <button onclick='attack()' name='btnAttack' id='btnAttack' style="visibility: hidden;">Attack!</i>
+            </div>
+
+            <div class='restart hidden'>
+                <button onclick='restart()' name='btnRestart' id='btnRestart' style="visibility: hidden;">Restart</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+</html>

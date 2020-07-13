@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'Pokemon';
+    src: url(./fonts/Pokemon\ GB.ttf);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    text-align: center;
+    margin: auto;
+}
+
+.trainer {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.sides {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5rem;
+}
+
+.side {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    align-items: center;
+}
+
+.trainerSprite {
+    width: 100%;
+}
+
+.party {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+    row-gap: 2rem;
+    justify-items: center;
+}
+
+.pokemon p {
+    margin: 0
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.moves {
+    padding-top: 3rem;
+}
+
+.moves button {
+    margin: 1rem;
+}
+
+.ldBar-label:after {
+    content: " HP";
+    font-size: .7em;
+}
+
+.displays {
+    display: grid;
+    grid-template-rows: 1fr 1fr 100px;
+    /* grid-auto-rows: min-content; */
+    row-gap: 1rem;
+    font-size: 1rem;
+}
+
+.display {
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.display h3 {
+    border-bottom: 1px solid #eee;
+}
